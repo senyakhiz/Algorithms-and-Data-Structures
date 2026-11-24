@@ -2,6 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <stdexcept>
+#include <algorithm>
 
 #include "../lib_queue/queue.h"
 
