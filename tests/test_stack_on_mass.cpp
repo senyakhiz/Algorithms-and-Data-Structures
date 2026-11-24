@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 #include <stdexcept>
 #include <string>
+#include <algorithm>
 
 #include "../lib_stack_on_mass/stack_on_mass.h"
 

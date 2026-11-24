@@ -1,13 +1,13 @@
 //// Copyright 2024 Marina Usova
 //
-//#define EASY_EXAMPLE
-//#ifdef EASY_EXAMPLE
+// #define EASY_EXAMPLE
+// #ifdef EASY_EXAMPLE
 //
-//#include <iostream>
-//#include <iomanip>
-//#include "../lib_easy_example/easy_example.h"
+// #include <iostream>
+// #include <iomanip>
+// #include "../lib_easy_example/easy_example.h"
 //
-//int main() {
+// int main() {
 //  int a, b;
 //  float result;
 //
@@ -34,4 +34,4 @@
 //  return 0;
 //}
 //
-//#endif  // EASY_EXAMPLE
+// #endif  // EASY_EXAMPLE

@@ -1,10 +1,10 @@
 // Copyright 2026 Ksenia Kh
 #include <gtest/gtest.h>
+#include <utility>
 #define VECTOR_TESTS
 
 #ifdef MEMDATA_TESTS
 #include "../lib_vector/memdata.h"
-#include "../lib_vector/vector.h"
 
 TEST(FunctionsForMemData, calculate_capacity) {
     EXPECT_EQ(0, calculate_capacity(0));
@@ -265,7 +265,7 @@ TEST(ClassMemData, can_move_assigment) {
 #endif
 
 #ifdef VECTOR_TESTS
-#include "vector.h"
+#include "../lib_vector/vector.h"
 
 TEST(ClassVector, can_create_with_default_constructor) {
     Vector<double> vec;
@@ -792,12 +792,14 @@ TEST(ClassVector, combination_push_pop_insert_erase) {
         vec.push_back(12 + i);
     }
     out << vec;
-    EXPECT_EQ("{ 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }", out.str());
+    EXPECT_EQ("{ 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }", 
+        out.str());
     out.str("");
 
     vec.insert(4, 3);
     out << vec;
-    EXPECT_EQ("{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }", out.str());
+    EXPECT_EQ("{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }", 
+        out.str());
     out.str("");
 
     EXPECT_EQ(16, vec.size());
