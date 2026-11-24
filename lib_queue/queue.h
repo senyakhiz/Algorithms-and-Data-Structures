@@ -3,6 +3,9 @@
 #ifndef LIB_QUEUE_QUEUE_H_
 #define LIB_QUEUE_QUEUE_H_
 
+#include <cstddef>
+#include <stdexcept>
+
 template <class T>
 class Queue {
     size_t _size;
@@ -14,11 +17,13 @@ class Queue {
      Queue(const Queue& other);
      ~Queue();
 
-     size_t size();
+     Queue& operator = (const Queue& other);
+
+     size_t size() const;
      T& front();
 
-     bool is_full();
-     bool is_emphy();
+     bool is_full() const;
+     bool is_empty() const;
 
      void push(const T&);
      T pop();
@@ -49,25 +54,42 @@ Queue<T>::~Queue() {
 }
 
 template <class T>
-size_t Queue<T>::size() {
+Queue<T>& Queue<T>::operator = (const Queue& other) {
+    if (this == &other) {
+        return *this;
+    }
+    T* new_data = new T[other._size];
+    for (size_t i = 0; i < other._size; ++i) {
+        new_data[i] = other._data[i];
+    }
+    delete[] _data;
+    _data = new_data;
+    _size = other._size;
+    _front = other._front;
+    _back = other._back;
+    return *this;
+}
+
+template <class T>
+size_t Queue<T>::size() const {
     return (_back - _front + _size) % _size;
 }
 
 template <class T>
 T& Queue<T>::front() {
-    if (is_emphy()) {
+    if (is_empty()) {
         throw std::out_of_range("queue is empty");
     }
     return _data[_front];
 }
 
 template <class T>
-bool Queue<T>::is_full() {
+bool Queue<T>::is_full() const {
     return (_back + 1) % _size == _front;
 }
 
 template <class T>
-bool Queue<T>::is_emphy() {
+bool Queue<T>::is_empty() const {
     return _front == _back;
 }
 
@@ -82,7 +104,7 @@ void Queue<T>::push(const T& value) {
 
 template <class T>
 T Queue<T>::pop() {
-    if (is_emphy()) {
+    if (is_empty()) {
         throw std::underflow_error("queue is empty");
     }
     T value = _data[_front];
