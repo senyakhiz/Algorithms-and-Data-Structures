@@ -92,8 +92,7 @@ bool TStackOnMass<T>::check_breckets(std::string expression) {
     for (char c : expression) {
         if (c == '(' || c == '[' || c == '{') {
             st.push(c);
-        }
-        else if (c == ')' || c == ']' || c == '}') {
+        } else if (c == ')' || c == ']' || c == '}') {
             if (st.is_empty()) {
                 return false;
             }

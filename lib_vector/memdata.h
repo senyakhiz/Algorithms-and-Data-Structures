@@ -55,8 +55,7 @@ template <typename T>
 MemData<T>::MemData(size_t size) {
     if (size == 0) {
         _data = nullptr;
-    }
-    else {
+    } else {
         _data = new T[calculate_capacity(size)];
     }
     _size = 0;
@@ -71,8 +70,7 @@ MemData<T>::MemData(std::initializer_list<T> list) {
         for (size_t i = 0; i < _size; ++i) {
             _data[i] = list.begin()[i];
         }
-    }
-    else {
+    } else {
         _data = nullptr;
     }
 }
@@ -153,7 +151,10 @@ void MemData<T>::reset_memory(size_t size, size_t start_index) noexcept {
 
     size_t elements_to_copy = 0;
     if (_data != nullptr && _capacity > 0 && _size > start_index) {
-        elements_to_copy = std::min(_size - start_index, size);
+        size_t elements_to_copy = _size - start_index;
+        if (elements_to_copy > size) {
+            elements_to_copy = size;
+        }
     }
 
     T* new_data = nullptr;

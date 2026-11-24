@@ -324,11 +324,9 @@ void Vector<T>::erase(size_t pos) {
 
     if (pos == 0) {
         pop_front();
-    }
-    else if (pos == _mem._size - 1) {
+    } else if (pos == _mem._size - 1) {
         pop_back();
-    }
-    else {
+    } else {
         size_t shift_left = pos;
         size_t shift_right = _mem._size - pos - 1;
 
@@ -339,8 +337,7 @@ void Vector<T>::erase(size_t pos) {
                 _mem._data[dst] = _mem._data[src];
             }
             _front = (_front + 1) % _mem._capacity;
-        }
-        else {
+        } else {
             for (size_t i = 0; i < shift_right; i++) {
                 size_t src = (_front + pos + i + 1) % _mem._capacity;
                 size_t dst = (_front + pos + i) % _mem._capacity;
@@ -348,8 +345,7 @@ void Vector<T>::erase(size_t pos) {
             }
             if (_back == 0) {
                 _back = _mem._capacity - 1;
-            }
-            else {
+            } else {
                 _back = _back - 1;
             }
         }
