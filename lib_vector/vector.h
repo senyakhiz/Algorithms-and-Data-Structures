@@ -183,15 +183,13 @@ void Vector<T>::push_front(const T& value) noexcept {
         _back = 0;
         _mem._data[0] = value;
         _mem._size = 1;
-    }
-    else {
+    } else {
         if (_mem.is_full()) {
             resize_and_rearrange();
         }
         if (_front == 0) {
             _front = _mem._capacity - 1;
-        }
-        else {
+        } else {
             _front = _front - 1;
         }
         _mem._data[_front] = value;
@@ -205,8 +203,7 @@ void Vector<T>::push_back(const T& value) noexcept {
         _front = _back = 0;
         _mem._data[0] = value;
         _mem._size = 1;
-    }
-    else {
+    } else {
         if (_mem.is_full()) {
             resize_and_rearrange();
         }
@@ -225,11 +222,9 @@ void Vector<T>::insert(const T& value, size_t pos) {
 
     if (pos == 0) {
         push_front(value);
-    }
-    else if (pos == _mem._size) {
+    } else if (pos == _mem._size) {
         push_back(value);
-    }
-    else {
+    } else {
         size_t shift_left = pos;
         size_t shift_right = _mem._size - pos;
 
@@ -242,8 +237,7 @@ void Vector<T>::insert(const T& value, size_t pos) {
             }
             _front = new_front;
             _mem._data[(_front + pos) % _mem._capacity] = value;
-        }
-        else {
+        } else {
             for (size_t i = shift_right; i > 0; i--) {
                 size_t src = (_front + pos + i - 1) % _mem._capacity;
                 size_t dst = (_front + pos + i) % _mem._capacity;
@@ -284,15 +278,16 @@ void Vector<T>::shrink_to_fit() noexcept {
     _front = 0;
     if (_mem._size > 0) {
         _back = _mem._size - 1;
-    }
-    else {
+    } else {
         _back = 0;
     }
 }
 
 template <typename T>
 void Vector<T>::pop_front() {
-    if (is_empty()) throw std::out_of_range("Vector is empty");
+    if (is_empty()) {
+        throw std::out_of_range("Vector is empty");
+    }
 
     _front = (_front + 1) % _mem._capacity;
     _mem._size--;
@@ -303,12 +298,13 @@ void Vector<T>::pop_front() {
 }
 template <typename T>
 void Vector<T>::pop_back() {
-    if (is_empty()) throw std::out_of_range("Vector is empty");
+    if (is_empty()) {
+        throw std::out_of_range("Vector is empty");
+    }
 
     if (_back == 0) {
         _back = _mem._capacity - 1;
-    }
-    else {
+    } else {
         _back--;
     }
     _mem._size--;
@@ -455,7 +451,9 @@ void sort(Vector<T>& vec) {
 }
 template <typename T>
 void shuffle(Vector<T>& vec) {
-    if (vec.size() <= 1) return;
+    if (vec.size() <= 1) {
+        return;
+    }
 
     static std::random_device rd;
     static std::mt19937 gen(rd());

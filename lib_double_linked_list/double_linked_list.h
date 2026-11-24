@@ -11,4 +11,4 @@ template <typename T> struct Node {
     Node* _prev;
 };
 
-#endif LIB_DOUBLE_LINKED_LIST_LIB_DOUBLE_LINKED_LIST_H_
+#endif //LIB_DOUBLE_LINKED_LIST_LIB_DOUBLE_LINKED_LIST_H_
