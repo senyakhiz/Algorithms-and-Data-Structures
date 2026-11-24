@@ -32,6 +32,6 @@
 //  }
 //
 //  return 0;
-//}
+// }
 //
 // #endif  // EASY_EXAMPLE

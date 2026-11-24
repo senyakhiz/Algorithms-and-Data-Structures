@@ -1,6 +1,7 @@
 // Copyright 2026 Ksenia Kh
 #include <gtest/gtest.h>
 #include <utility>
+#include <algorithm>
 #define VECTOR_TESTS
 
 #ifdef MEMDATA_TESTS
@@ -793,13 +794,13 @@ TEST(ClassVector, combination_push_pop_insert_erase) {
     }
     out << vec;
     EXPECT_EQ("{ 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }", 
-        out.str());
+       out.str());
     out.str("");
 
     vec.insert(4, 3);
     out << vec;
     EXPECT_EQ("{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }", 
-        out.str());
+       out.str());
     out.str("");
 
     EXPECT_EQ(16, vec.size());
